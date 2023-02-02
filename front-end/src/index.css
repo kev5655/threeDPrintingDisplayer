@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "Signika-Negative-Bold";
+    src: local("Signika-Negative-Bold"),
+        url("./fonts/Signika_Negative/SignikaNegative-Bold.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Signika-Negative-Light";
+    src: local("Signika-Negative-Light"),
+    url("./fonts/Signika_Negative/SignikaNegative-Light.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Signika-Negative-Medium";
+    src: local("Signika-Negative-Medium"),
+    url("./fonts/Signika_Negative/SignikaNegative-Medium.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Signika-Negative-Regular";
+    src: local("Signika-Negative-Regular"),
+    url("./fonts/Signika_Negative/SignikaNegative-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Signika-Negative-SemiBold";
+    src: local("Signika-Negative-SemiBold"),
+    url("./fonts/Signika_Negative/SignikaNegative-SemiBold.ttf") format("truetype");
+    font-weight: normal;
+}
+
+h1, p {
+    font-family: Signika-Negative-Regular, sans-serif;
+    font-weight: normal;
+    color: white;
+}
+
+h1 {
+    font-size: 1.953rem;
+}
+
+p {
+    font-size: 1.25rem;
+}
+
