@@ -1,6 +1,6 @@
 import React from "react";
 import Databox from "../components/Databox";
-import Background from "../components/Background";
+import Background from "../layout/Background";
 
 
 
