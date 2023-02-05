@@ -17,6 +17,8 @@ const SimpleGraph: FC<Data> = ({x, y, data}) => {
     const y_average = data.reduce( ( p, c ) => p + c, 0 ) / data.length; // Calc Average
     const y_data_offset = y_middle - y_average
 
+    data = smooth(data, 3);
+
     return (
         <svg width={x} height={y}>
             {/*Helper Lines*/}
@@ -43,3 +45,15 @@ const SimpleGraph: FC<Data> = ({x, y, data}) => {
 }
 
 export default SimpleGraph;
+
+function smooth(data: number[], windowSize: number): number[] {
+    let smoothedData: number[] = [];
+    for (let i = 0; i < data.length; i++) {
+        let windowStart = Math.max(0, i - windowSize + 1);
+        let windowEnd = i + 1;
+        let window = data.slice(windowStart, windowEnd);
+        let smoothedPoint = window.reduce((sum, current) => sum + current) / window.length;
+        smoothedData.push(smoothedPoint);
+    }
+    return smoothedData;
+}
