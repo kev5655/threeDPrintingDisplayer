@@ -2,6 +2,8 @@ import React from "react";
 import Databox from "../components/cards/Databox";
 import Background from "../layout/Background";
 import RaspiData from "../components/cards/RaspiData";
+import {TemperaturValue} from "../utils/objects/TemperaturValue";
+import {PercentValue} from "../utils/objects/PercentValue";
 
 
 const Overview = (): JSX.Element => {
@@ -18,12 +20,14 @@ const Overview = (): JSX.Element => {
         <Background className="flex items-center justify-evenly">
             <Databox title="Druckraum"
                      firstTitle="Temperatur"
-                     firstData={23.5}
+                     firstData={new TemperaturValue(23.5)}
                      secondTitle="Luftfeuchtigkeit"
-                     secondData={50.7}
+                     secondData={new PercentValue(50.7)}
                      onClick={onShowGraphPrintingRoom}/>
-            <RaspiData title="Raspberry" firstTitle="CPU Auslastung" firstData={76} secondTitle="RAM Auslastung"
-                       secondData={79} thirdTitle="CPU Temperatur" thirdData={48.7}/>
+            <RaspiData title="Raspberry" firstTitle="CPU Auslastung" firstData={new PercentValue(76)}
+                       secondTitle="RAM Auslastung"
+                       secondData={new PercentValue(79)} thirdTitle="CPU Temperatur"
+                       thirdData={new PercentValue(48.7)}/>
             {/*<Databox title="Filamentraum"*/}
             {/*         firstTitle="Temperatur"*/}
             {/*         firstData={22.8}*/}
