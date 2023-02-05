@@ -1,5 +1,5 @@
 import React from "react";
-import Databox from "../components/Databox";
+import Databox from "../components/cards/Databox";
 import Background from "../layout/Background";
 
 

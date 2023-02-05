@@ -1,5 +1,5 @@
 import React from "react";
-import SimpleGraph from "./graph/SimpleGraph";
+import SimpleGraph from "../graph/SimpleGraph";
 
 type DataboxData = {
     name: string;
