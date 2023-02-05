@@ -20,7 +20,10 @@ const Databox = ({title, firstTitle, firstData, secondTitle, secondData, onClick
             <h1 className="pb-16">{title}</h1>
             <div className="pb-6">
                 <p>{firstTitle}</p>
-                <p className="text-2xl pt-3 pl-6">{firstData}</p>
+                <div className="flex gap-3">
+                    <p className="text-2xl pt-3 pl-6">{firstData}</p>
+                    <SimpleGraph x={50} y={50} data={[21.5, 23.8, 37.3, 47.8, 41.9, 38.5, 35.0]}/>
+                </div>
             </div>
             <div>
                 <p>{secondTitle}</p>

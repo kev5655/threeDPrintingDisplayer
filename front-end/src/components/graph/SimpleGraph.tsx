@@ -18,7 +18,7 @@ const SimpleGraph: FC<Data> = ({x, y, data}) => {
     const y_data_offset = y_middle - y_average
 
     return (
-        <svg>
+        <svg width={x} height={y}>
             {/*Helper Lines*/}
             {/*<line x1={0} x2={x} y1={y_offset} y2={y_offset} style={{stroke: "red"}}></line>*/}
             {/*<line x1={0} x2={0} y1={0} y2={y} style={{stroke: "pink"}}></line>*/}
