@@ -16,8 +16,18 @@ const Overview = (): JSX.Element => {
 
     return (
         <Background className="flex items-center justify-evenly">
-            <Databox onClick={onShowGraphPrintingRoom} name="Druckraum" temp={23.5} humi={50.7}/>
-            <Databox onClick={onShowGraphFilamentRoom} name="Filamentraum" temp={22.8} humi={25.3}/>
+            <Databox title="Druckraum"
+                     firstTitle="Temperatur"
+                     firstData={23.5}
+                     secondTitle="Luftfeuchtigkeit"
+                     secondData={50.7}
+                     onClick={onShowGraphPrintingRoom} />
+            <Databox title="Filamentraum"
+                     firstTitle="Temperatur"
+                     firstData={22.8}
+                     secondTitle="Luftfeuchtigkeit"
+                     secondData={25.3}
+                     onClick={onShowGraphFilamentRoom} />
         </Background>
 
     );
