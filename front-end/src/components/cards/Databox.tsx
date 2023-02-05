@@ -1,7 +1,7 @@
 import React from "react";
 import SimpleGraph from "../graph/SimpleGraph";
 
-type DataboxData = {
+type DataboxProps = {
     title: string;
     firstTitle: string;
     firstData: number;
@@ -10,7 +10,7 @@ type DataboxData = {
     onClick: () => void;
 }
 
-const Databox = ({title, firstTitle, firstData, secondTitle, secondData, onClick}: DataboxData): JSX.Element => {
+const Databox = ({title, firstTitle, firstData, secondTitle, secondData, onClick}: DataboxProps): JSX.Element => {
 
     return (
         <div onClick={onClick} className="w-72 h-4/5
