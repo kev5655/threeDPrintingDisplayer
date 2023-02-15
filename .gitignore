@@ -51,6 +51,7 @@ yarn-error.log*
 #Draw.io
 *.drawio
 *.bkp
+*.dtmp
 
 #WebTemplate
 WebTemplate.svg
