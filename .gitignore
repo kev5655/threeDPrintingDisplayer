@@ -55,3 +55,8 @@ yarn-error.log*
 
 #WebTemplate
 WebTemplate.svg
+
+# Docker
+/kafka
+/mongo-db
+/zookeeper
