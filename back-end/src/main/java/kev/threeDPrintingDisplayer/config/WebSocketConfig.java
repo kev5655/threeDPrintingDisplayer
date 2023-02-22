@@ -7,7 +7,6 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -17,11 +16,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Value("${mqtt.topic-list}")
     private List<String> topics;
 
-//    Arrays.toString(topics.toArray())
-
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry  ) {
-        registry.enableSimpleBroker("/3D-Drucker/LightControl/data/temperature", "/3D-Drucker/LightControl/data/humidity");
+        registry.enableSimpleBroker(topics.toArray(new String[0]));
         registry.setApplicationDestinationPrefixes("/app");
     }
 
