@@ -62,8 +62,13 @@ services:
       CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "1"
-      CONNECT_PLUGIN_PATH: '/usr/share/java,/etc/kafka-connect/jars'
+      CONNECT_PLUGIN_PATH: '/usr/share/java,/etc/kafka-connect/jars,/usr/share/confluent-hub-components'
       CONNECT_CONFLUENT_TOPIC_REPLICATION_FACTOR: 1
+      CONNECT_MQTT_CONNECTION_URL: tcp://192.168.1.138:1883
+      CONNECT_MQTT_TOPIC: baeldung
+      CONNECT_MQTT_QOS: 2
+      CONNECT_MQTT_CLEAN_SESSION: true
+      CONNECT_MQTT_CLIENT_ID: kafka-client-id
     volumes:
       - /tmp/custom/jars:/etc/kafka-connect/jars
     depends_on:
@@ -95,4 +100,9 @@ services:
       PORT: 3000
     expose:
       - "3000"
+
+  # mqtt-broker:
+  #   image: eclipse-mosquitto:latest
+  #   ports:
+  #     - "1883:1883"
 
