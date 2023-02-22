@@ -1,25 +1,23 @@
-package kev.threeDPrintingDisplayer.webSocket;
+package kev.threeDPrintingDisplayer.controller;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import kev.threeDPrintingDisplayer.modle.Meassage;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.util.HtmlUtils;
 
+@Slf4j
 @Controller
 public class WebSocketController {
 
-    @MessageMapping("/temperature")
-    @SendTo("/topic/printingRoom")
-    public Meassage temperatureMessage(String temperature) throws InterruptedException {
-        Thread.sleep(3000);
-        return new Meassage(HtmlUtils.htmlEscape(temperature));
-    }
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
 
-    @MessageMapping("/humidity")
-    @SendTo("/topic/printingRoom")
-    public Meassage humidityMessage(String humidity) throws InterruptedException {
-        Thread.sleep(3000);
-        return new Meassage(HtmlUtils.htmlEscape(humidity));
+    public void sendMessage(Meassage meassage){
+        log.info("Send Message to Client over ws on topic {} with payload {}",
+                meassage.getTopic(),
+                meassage.getContent());
+        simpMessagingTemplate.convertAndSend(meassage.getTopic(), meassage.getContent());
     }
 
 }

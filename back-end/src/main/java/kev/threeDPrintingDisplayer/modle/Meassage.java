@@ -1,4 +1,4 @@
-package kev.threeDPrintingDisplayer.webSocket;
+package kev.threeDPrintingDisplayer.modle;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Meassage {
 
+    private final String topic;
     private final String content;
 
 }
