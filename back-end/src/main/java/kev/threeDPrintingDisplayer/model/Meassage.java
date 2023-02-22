@@ -1,4 +1,4 @@
-package kev.threeDPrintingDisplayer.modle;
+package kev.threeDPrintingDisplayer.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package kev.threeDPrintingDisplayer.service;
 
 import kev.threeDPrintingDisplayer.controller.WebSocketController;
-import kev.threeDPrintingDisplayer.modle.Meassage;
+import kev.threeDPrintingDisplayer.model.Meassage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
