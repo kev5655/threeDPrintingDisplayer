@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React from "react";
 import Databox from "../components/cards/Databox";
 import Background from "../layout/Background";
 import RaspiData from "../components/cards/RaspiData";
@@ -7,41 +7,14 @@ import {PercentValue} from "../utils/objects/PercentValue";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Pagination} from "swiper";
 
-import {Client, Message, over} from "stompjs"
-import SockJS from "sockjs-client"
-
 import "swiper/css";
 import "swiper/css/pagination";
+import {useWebSocket} from "../hook/useWebSocket";
 
-let stompClient: Client;
 
 const Overview = (): JSX.Element => {
 
-    const [printingRoomTemp, setPrintingRoomTemp] = useState(0);
-    const [printingRoomHumi, setPrintingRoomHumi] = useState(0);
-
-    const onConnected = useCallback(() => {
-        stompClient.subscribe("/3D-Drucker/LightControl/data/temperature", onMessageReceived_PrintingRoomTemp);
-        stompClient.subscribe("/3D-Drucker/LightControl/data/humidity", onMessageReceived_PrintingRoomHumi);
-    }, []);
-
-    useEffect(() => {
-        let Sock = new SockJS('http://localhost:8080/ws');
-        stompClient = over(Sock);
-        stompClient.connect({}, onConnected, (err) => {console.error(err);});
-    }, [onConnected])
-
-    const onMessageReceived_PrintingRoomTemp = (payload: Message) => {
-        let message: JSON = JSON.parse(payload.body);
-        setPrintingRoomTemp(message as unknown as number)
-        console.log(message);
-    }
-
-    const onMessageReceived_PrintingRoomHumi = (payload: Message) => {
-        let message: JSON = JSON.parse(payload.body);
-        setPrintingRoomHumi(message as unknown as number)
-        console.log(message);
-    }
+    const [printingRoomTemp, printingRoomHumi] = useWebSocket();
 
     const onShowGraphPrintingRoom = () => {
         console.log("Show Printing Room Graph");
