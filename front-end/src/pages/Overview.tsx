@@ -24,18 +24,23 @@ const Overview = (): JSX.Element => {
         console.log("Show Filament Room Graph");
     }
 
+    const onShowGraph3DDrucker = () => {
+        console.log("Show 3D Drucker Graph");
+    }
+
     return (
 
         <Background>
             <Swiper slidesPerView={2}
-                    loop={true} // Not Work issue in the Lib
+                    loop={true}
+                    modules={[Pagination]}
                     pagination={{
                         clickable: true,
                     }}
-                    modules={[Pagination]}
                     // onSwiper={(swiper) => console.log("Swipe")}
                     // onSlideChange={() => console.log('slide change')}
                     className="h-full w-full">
+
                 <SwiperSlide className="flex-im justify-center place-items-center">
                     <Databox title="Druckraum"
                              firstTitle="Temperatur"
@@ -55,11 +60,22 @@ const Overview = (): JSX.Element => {
                 </SwiperSlide>
 
                 <SwiperSlide className="flex-im justify-center place-items-center">
+                    <Databox title="3D Drucker"
+                             firstTitle="Temperatur Druckkopf"
+                             firstData={new TemperaturValue(0)}
+                             secondTitle="Temperatur Bed"
+                             secondData={new TemperaturValue(0)}
+                             onClick={onShowGraph3DDrucker}/>
+                </SwiperSlide>
+
+                <SwiperSlide className="flex-im justify-center place-items-center">
                     <RaspiData title="Raspberry" firstTitle="CPU Auslastung" firstData={new PercentValue(76)}
                                secondTitle="RAM Auslastung"
                                secondData={new PercentValue(79)} thirdTitle="CPU Temperatur"
                                thirdData={new PercentValue(48.7)}/>
                 </SwiperSlide>
+
+
 
 
             </Swiper>
