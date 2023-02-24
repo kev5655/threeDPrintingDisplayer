@@ -14,7 +14,7 @@ public class WebSocketController {
     private SimpMessagingTemplate simpMessagingTemplate;
 
     public void sendMessage(Meassage meassage){
-        log.info("Send Message to Client over ws on topic {} with payload {}",
+        log.info("WEBSOCKET -- Send Message to Client over ws on topic {} with payload {}",
                 meassage.getTopic(),
                 meassage.getContent());
         simpMessagingTemplate.convertAndSend(meassage.getTopic(), meassage.getContent());

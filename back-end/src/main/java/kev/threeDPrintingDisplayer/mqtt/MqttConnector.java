@@ -18,7 +18,6 @@ import org.springframework.integration.mqtt.support.MqttHeaders;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 //https://www.youtube.com/watch?v=HHKrKwI--Yw&ab_channel=ParsCoder
@@ -29,7 +28,6 @@ import java.util.Objects;
 public class MqttConnector {
 
     private final MessageService messageService;
-    private List<String> topics = new LinkedList<>();
 
     public MqttPahoClientFactory mqttClientFactory(String broker_url) {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
@@ -53,7 +51,6 @@ public class MqttConnector {
         log.info("Connect to broker url {}", broker_url);
         log.info("Client is {}", client_id);
         log.info("Subscribed topic are {}", topics.toArray());
-        this.topics = topics;
         MqttPahoMessageDrivenChannelAdapter adapter =
                 new MqttPahoMessageDrivenChannelAdapter(client_id, mqttClientFactory(broker_url));
         for (String topic : topics) {
@@ -71,7 +68,7 @@ public class MqttConnector {
     public MessageHandler handler() {
         return message -> {
             String topic = Objects.requireNonNull(message.getHeaders().get(MqttHeaders.RECEIVED_TOPIC)).toString();
-            log.info("Received Message over Mqtt on topic {} with payload {}",
+            log.info("MQTT -- Received Message over Mqtt on topic {} with payload {}",
                     topic, message.getPayload());
             messageService.sendMessage(topic, (String) message.getPayload());
         };
