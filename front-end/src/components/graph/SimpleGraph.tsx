@@ -28,7 +28,7 @@ const SimpleGraph: FC<Data> = ({x, y, data}) => {
             {
                 data.map((value, index, array) => {
                     if (index !== data.length - 1) {
-                        return <line x1={index * x_gap}
+                        return <line key={index} x1={index * x_gap}
                                      x2={index * x_gap + x_gap}
                                      y1={y - value - y_data_offset}
                                      y2={y - array[index + 1] - y_data_offset}
