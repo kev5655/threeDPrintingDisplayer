@@ -11,14 +11,29 @@ services:
       - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource
       volumes:
         - grafana-volume:/var/lib/grafana
-
-  mongodb_container:
-    image: mongo:latest
+      networks:
+        - grafana-influxdb-net
+  
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    environment:
+      - INFLUXDB_DB=testInfluxDB
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_HTTP_AUTH_ENABLED=true
+      - INFLUXDB_ADMIN_ENABLED=true
     ports:
-      - 27017:27017
+      - 8086:8086 #TCP
+      - 8083:8083 #Web
     volumes:
-      - mongodb-iot-volume:/data/db
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - grafana-influxdb-net
 
 volumes:
-  mongodb-iot-volume:
+  influxdb_data:
   grafana-volume:
+
+networks:
+  grafana-influxdb-net:
