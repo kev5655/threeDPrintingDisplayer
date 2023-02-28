@@ -15,24 +15,17 @@ services:
         - grafana-influxdb-net
   
   influxdb:
-    image: influxdb
+    image: influxdb:2.6
     container_name: influxdb
-    environment:
-      - INFLUXDB_DB=testInfluxDB
-      - INFLUXDB_ADMIN_USER=admin
-      - INFLUXDB_ADMIN_PASSWORD=admin
-      - INFLUXDB_HTTP_AUTH_ENABLED=true
-      - INFLUXDB_ADMIN_ENABLED=true
     ports:
-      - 8086:8086 #TCP
-      - 8083:8083 #Web
+      - 8086:8086
     volumes:
-      - influxdb_data:/var/lib/influxdb
+      - influxdb_volume:/var/lib/influxdb2
     networks:
       - grafana-influxdb-net
 
 volumes:
-  influxdb_data:
+  influxdb_volume:
   grafana-volume:
 
 networks:
