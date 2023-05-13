@@ -13,7 +13,8 @@ export class MqttService implements OnModuleInit {
     const clientId = `mqtt_${Math.random().toString(16).slice(3)}`;
 
     const connectUrl = `mqtt://${host}:${port}`;
-    const topic = '/nodejs/mqtt/sp';
+    const topicTemp = '/3D-Drucker/LightControl/data/temperature';
+    const topicHumi = '/3D-Drucker/LightControl/data/humidity';
 
     this.mqttClient = connect(connectUrl, {
       clientId,
@@ -21,7 +22,8 @@ export class MqttService implements OnModuleInit {
       connectTimeout: 4000,
       reconnectPeriod: 1000,
     });
-    this.mqttClient.subscribe('/test');
+    this.mqttClient.subscribe(topicTemp);
+    this.mqttClient.subscribe(topicHumi);
 
     this.mqttClient.on('connect', () => {
       debug('Connected to Mqtt');
@@ -33,8 +35,7 @@ export class MqttService implements OnModuleInit {
     });
 
     this.mqttClient.on('message', (topic, message) => {
-      debug(`topic: ${topic} message: ${message}`);
-      info('test');
+      info(`topic: ${topic} message: ${message}`);
     });
   }
 
