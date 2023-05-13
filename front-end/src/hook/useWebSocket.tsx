@@ -16,9 +16,9 @@ export const useWebSocket = () => {
     }, []);
 
     useEffect(() => {
-        let Sock = new SockJS('http://localhost:8080/ws');
+        let Sock = new SockJS('http://localhost:8081');
         stompClient = over(Sock);
-        stompClient.debug = () => {};
+        // stompClient.debug = () => {};
         stompClient.connect({}, onConnected, (err) => {console.error(err);});
     }, [onConnected])
 

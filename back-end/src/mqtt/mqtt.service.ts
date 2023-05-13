@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { connect } from 'mqtt';
 import { debug, error, info } from 'ps-logger';
 
@@ -26,7 +25,6 @@ export class MqttService implements OnModuleInit {
     this.mqttClient.subscribe(topicHumi);
 
     this.mqttClient.on('connect', () => {
-      debug('Connected to Mqtt');
       info('Connected to Mqtt');
     });
 
